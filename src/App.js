@@ -1,15 +1,15 @@
 import './App.css';
-import react, { useState } from react;
+import React, { useState } from 'react';
 
 function App() {
 
-  const [task, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
 
   const handleAddTask = () => {
     if (newTask.trim() === "") return;
   
-    setTasks([...setTasks, newTask]);
+    setTasks([...tasks, newTask]);
     setNewTask("");
   }
   return (
@@ -18,10 +18,15 @@ function App() {
 
       <input type='text'
         value={newTask}
-        onChange={(e) => setNewTaske(e.target.value)}
-      placeholder='Add new task here'/>
+        onChange={(e) => setNewTask(e.target.value)}
+        placeholder='Add new task here'/>
+      <button onClick={handleAddTask}>Add Task</button>
       
-      
+      <ul style={{ listStyle: "none", padding: 0 }}>
+        {tasks.map((task, index) => (
+          <li key={index}>{task}</li>
+        ))}
+      </ul>
 
       
       
